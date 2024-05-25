@@ -8,7 +8,6 @@ FCM Receiver is a Go application that can receive FCM (Firebase Cloud Messaging)
 - Stores Android device details (FCM token, Android ID, etc.) to a JSON file
 - Forwards the FCM notification data to a specified webhook URL
 - Provides two HTTP endpoints: `/token` and `/device`
-  - `/token` returns the current FCM token
   - `/device` returns the stored device details
 
 ## How to Use
@@ -23,7 +22,7 @@ FCM Receiver is a Go application that can receive FCM (Firebase Cloud Messaging)
 1. Clone the repository:
 
    ```
-   git clone https://github.com/yourgithubusername/fcmreceiver.git
+   git clone https://github.com/agusibrahim/fcmreceiver
    ```
 
 2. Navigate to the project directory:
