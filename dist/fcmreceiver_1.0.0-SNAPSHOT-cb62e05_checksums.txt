@@ -1,0 +1,2 @@
+129fce4f060a6688bb119229a053f1297df6bf518549f9b792a7eb26b4030e00  fcmreceiver_Darwin_arm64.tar.gz
+5baded329ab3d3fd99428f9699985219f96ae2affb73e55833ebdccd5f5a7a48  fcmreceiver_Darwin_x86_64.tar.gz
