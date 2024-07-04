@@ -61,6 +61,15 @@ func LoadDeviceDetails() (*DeviceDetails, error) {
 
 	return &deviceDetails, nil
 }
+func sendWebhookDataAsync(webhookUrl string, data []byte) {
+	go func() {
+		err := sendWebhookData(webhookUrl, data)
+		if err != nil {
+			// Handle the error, for example, log it
+			fmt.Printf("Error sending data to webhook: %v\n", err)
+		}
+	}()
+}
 func sendWebhookData(webhookUrl string, data []byte) error {
 	// Send the data as an HTTP POST request to the webhook URL
 	resp, err := http.Post(webhookUrl, "application/json", bytes.NewBuffer(data))
@@ -128,8 +137,8 @@ func main() {
 				if time.Since(startTime) < 10*time.Second {
 					return
 				}
-				sendWebhookData(webhookUrl, message)
 				fmt.Println("Received a message:", string(message))
+				go sendWebhookDataAsync(webhookUrl, message)
 			},
 		}
 		privateKey, authSecret, err := newDevice.CreateNewKeys()
@@ -169,8 +178,8 @@ func main() {
 				if time.Since(startTime) < 10*time.Second {
 					return
 				}
-				sendWebhookData(webhookUrl, message)
 				fmt.Println("Received a message:", string(message))
+				go sendWebhookDataAsync(webhookUrl, message)
 			},
 		}
 
